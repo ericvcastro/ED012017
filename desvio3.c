@@ -28,7 +28,8 @@ int desvio(int *vetor, int numeroTermos){
 
 int main(){
 
-	int i, numeroTermos, somaPonto=0, vetor[10], Padrao;
+	int i, numeroTermos, somaPonto=0, Padrao;
+	int vetor[numeroTermos];
 
 	do{
 		printf("Numero de termos = ");
