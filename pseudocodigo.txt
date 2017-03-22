@@ -1,0 +1,16 @@
+entrada: numeroigual, i,vetor [n] //numeroigual será a constante dada no vetor e n será o tamanho do vetor
+
+escreva numeroigual
+
+para i igual a 0 até (n-1)
+	escreva vetor[1]
+
+para i igual a 0 até n-1
+	se 
+		vetor[i] for igual a numeroigual
+		
+			imprima numeroigual
+			fim do codigo
+
+fim do codigo
+
