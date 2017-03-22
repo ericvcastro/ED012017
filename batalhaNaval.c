@@ -1,9 +1,17 @@
+/*	Nome: Eric do Vale de Castro	
+	Matrícula: 15/0124236
+	Codigo implementado:
+	 Batalha Naval*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 #define enc = 4;
 #define sub = 1;
+#define agua = 0;
 
 
 typedef struct naval{
@@ -38,6 +46,7 @@ void dificuldade(naval *naval){
 }
 
 /*--------------------------------------------------------Tabuleiro---------------------------------------------*/
+
 void tabuleiro(int tam, int jogador[20][20]){
 	int i, j;
 	for (i = 0; i < tam+1; ++i){
