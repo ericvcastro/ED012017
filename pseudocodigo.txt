@@ -12,5 +12,7 @@ para i igual a 0 até n-1
 			imprima numeroigual
 			fim do codigo
 
+imprima "no vetor não tem um numero igual ao numero que você deseja!"
+
 fim do codigo
 
