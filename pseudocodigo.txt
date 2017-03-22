@@ -1,6 +1,7 @@
 entrada: numeroigual, i,vetor [n] //numeroigual será a constante dada no vetor e n será o tamanho do vetor
 
 escreva numeroigual
+escreva n
 
 para i igual a 0 até (n-1)
 	escreva vetor[1]
