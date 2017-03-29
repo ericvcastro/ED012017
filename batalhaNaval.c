@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #define PORTAAVIOES 'P' /*Porta-Aviões com 5 peças*/
 #define ENCORACADO 'E' /*Encoraçado com 4 peças*/
@@ -15,11 +16,12 @@
 #define CORVETA 'C' /*Corveta com 2 peças*/
 #define SUBMARINO 'S' /*Submarino com 1 peça*/
 #define AGUA ' '
+#define NAOJOGADO '+'
 
 
 typedef struct naval{
 	int tam;
-	int jogador1[20][20], jogador2[20][20]; 
+	int jogador1[21][20], jogador2[21][20], jogando1[21][20], jogando2[21][20]; 
 
 }naval;
 
@@ -59,6 +61,18 @@ void zerandomatrizes(int tam, int jogador[20][20]){
 		}
 	}
 }
+ /*-------------------------------------------------------não jogado-------------------------------------------------*/
+
+
+void naojogado(int tam, int jogador1[20][20]){
+	int i, j;
+	for(i=0;i<tam+1;++i){
+		for(j=0;j<tam;++j){
+			jogador1[i][j] = NAOJOGADO;
+		}
+	}
+}
+
 
 /*--------------------------------------------------------Tabuleiro---------------------------------------------*/
 
@@ -77,6 +91,10 @@ void tabuleiro(int tam, int jogador[20][20]){
 				}
 				else
 					printf("%d|", j+1);
+			}
+
+			else if(jogador[i][j] == NAOJOGADO){
+				printf(" %c|", NAOJOGADO);
 			}
 			else if(jogador[i][j] == AGUA){
 				printf(" %c|", AGUA);
@@ -446,21 +464,45 @@ int ganhar(){
 /*------------------------------------------------------Jogar----------------------------------------------------*/
 
 void jogar(naval *naval){
-	int i, linhajogador1, colunajogador1, linhajogador2, colunajogador2;
+	int linhajogador1, colunajogador1, linhajogador2, colunajogador2;
+	
 	zerandomatrizes(naval->tam, naval->jogador1);
 	zerandomatrizes(naval->tam, naval->jogador2);
-	
 	distribuicaoArmas(naval->tam, naval->jogador1);
 	distribuicaoArmas(naval->tam, naval->jogador2);
 	
+	naojogado(naval->tam, naval->jogando1);
+	naojogado(naval->tam, naval->jogando2);
+	tabuleiro(naval->tam, naval->jogador2);
+
 	while(!ganhar()){
+		
 		limparTela();
-		printf(" P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n");
-		tabuleiro(naval->tam, naval->jogador1);
+		tabuleiro(naval->tam, naval->jogando2);
+		printf(" P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n\n");
 		printf("Qual Posição Linha você deseja Jogador 1: ");
 		scanf("%d", &linhajogador1);
 		printf("Qual Posição Coluna você deseja jogador 1: ");
 		scanf("%d", &colunajogador1);
+		naval->jogando2[linhajogador1][colunajogador1-1] = naval->jogador2[linhajogador1][colunajogador1-1];
+		tabuleiro(naval->tam, naval->jogando2);
+		sleep(5);
+/*------------------------------------------------------------------------------------------------------------------------*/
+		limparTela();
+		tabuleiro(naval->tam, naval->jogando1);
+		printf(" P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n\n");
+		printf("Qual Posição Linha você deseja Jogador 2: ");
+		scanf("%d", &linhajogador2);
+		printf("Qual Posição Coluna você deseja jogador 2: ");
+		scanf("%d", &colunajogador2);
+		naval->jogando1[linhajogador2][colunajogador2-1] = naval->jogador1[linhajogador2][colunajogador2-1];
+		
+		tabuleiro(naval->tam, naval->jogando1);
+		
+		sleep(5);
+		
+
+		
 	}
 
 }
