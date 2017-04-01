@@ -127,6 +127,7 @@ void distribuicaoArmas(int tam, int jogador[20][20]){
 	srand(time(NULL));
 
 
+
 	if(tam == 10){	/*Modo Facil*/
 	/*------------------------------------------------------------------Porta-Avioes---------------------------------------------------------*/
 			do{
@@ -293,6 +294,8 @@ void distribuicaoArmas(int tam, int jogador[20][20]){
 	/*____________________________________________________HARD_____________________________________________________________________*/
 
 		if(tam == 20){	/*Modo Dificil*/
+			srand(time(NULL)+1);
+				
 	/*---------------------------------------------------------------------Porta-Avioes----------------------------------------------------*/
 			do{
 				aleatoriocoluna = rand()%tam;
@@ -478,19 +481,20 @@ void jogar(naval *naval){
 	while(!ganhar()){
 		
 		limparTela();
+		printf("\n P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n\n");
 		tabuleiro(naval->tam, naval->jogando2);
-		printf(" P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n\n");
 		printf("Qual Posição Linha você deseja Jogador 1: ");
 		scanf("%d", &linhajogador1);
 		printf("Qual Posição Coluna você deseja jogador 1: ");
 		scanf("%d", &colunajogador1);
 		naval->jogando2[linhajogador1][colunajogador1-1] = naval->jogador2[linhajogador1][colunajogador1-1];
 		tabuleiro(naval->tam, naval->jogando2);
-		sleep(5);
+		tabuleiro(naval->tam, naval->jogador2);
+		sleep(3);
 /*------------------------------------------------------------------------------------------------------------------------*/
 		limparTela();
+		printf("\n P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n\n");
 		tabuleiro(naval->tam, naval->jogando1);
-		printf(" P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n\n");
 		printf("Qual Posição Linha você deseja Jogador 2: ");
 		scanf("%d", &linhajogador2);
 		printf("Qual Posição Coluna você deseja jogador 2: ");
@@ -498,8 +502,9 @@ void jogar(naval *naval){
 		naval->jogando1[linhajogador2][colunajogador2-1] = naval->jogador1[linhajogador2][colunajogador2-1];
 		
 		tabuleiro(naval->tam, naval->jogando1);
+		tabuleiro(naval->tam, naval->jogador1);
 		
-		sleep(5);
+		sleep(3);
 		
 
 		
