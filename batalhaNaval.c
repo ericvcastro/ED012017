@@ -459,10 +459,74 @@ void distribuicaoArmas(int tam, int jogador[20][20]){
 		}	/*Modo Dificil*/
 } 
 
+/*--------------------------------------------------------Ganhadores--------------------------------------------------------------*/
+
+void ganhador1(){
+	printf("						PARABENS! JOGADOR 1 Você acaba de DESTRUIR TODAS\n");
+	printf("								As EMBARCAÇÕES do seu Adversario!!\n");
+	sleep(5);
+}
+
+void ganhador2(){
+	printf("						PARABENS! JOGADOR 2 Você acaba de DESTRUIR TODAS\n");
+	printf("								As EMBARCAÇÕES do seu Adversario!!\n");
+	sleep(5);
+}
+
 /*-----------------------------------------------------------GANHAR---------------------------------------------------------*/
 
-int ganhar(){
-	return 0;	
+int ganhar(naval *naval){
+	int i, j, score=0;
+	
+	for(i=0; i<naval->tam; i++){
+		for(j=0; j<naval->tam; j++){
+			if(naval->jogando1[i][j] != NAOJOGADO){
+				if(naval->jogando1[i][j] == naval->jogador1[i][j]){
+					score++;
+				}
+			}
+
+		}
+	}
+	if(naval->tam == 10){
+		if(score == 35){
+			ganhador2();
+			return 1;
+		}
+	}
+	if(naval->tam == 20){
+		if(score == 70){
+			ganhador2();
+			return 1;
+		}
+	}
+
+	score = 0;
+
+	for(i=0; i<naval->tam; i++){
+		for(j=0; j<naval->tam; j++){
+			if(naval->jogando2[i][j] != NAOJOGADO){
+				if(naval->jogando2[i][j] == naval->jogador2[i][j]){
+					score++;
+				}
+			}
+
+		}
+	}
+	if(naval->tam == 10){
+		if(score == 35){
+			ganhador1();
+			return 1;
+		}
+	}
+	if(naval->tam == 20){
+		if(score == 70){
+			ganhador1();
+			return 1;
+		}
+	}
+
+		return 0;	
 }
 /*------------------------------------------------------Jogar----------------------------------------------------*/
 
@@ -478,7 +542,7 @@ void jogar(naval *naval){
 	naojogado(naval->tam, naval->jogando2);
 	tabuleiro(naval->tam, naval->jogador2);
 
-	while(!ganhar()){
+	while(!ganhar(naval)){
 		
 		limparTela();
 		printf("\n P = Porta-Aviões\n E = Encoraçado\n F = Fragata\n C = Corveta\n S = Submarino\n\n");
