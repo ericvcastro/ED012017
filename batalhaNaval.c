@@ -4,7 +4,6 @@
 	 Batalha Naval*/
 
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -119,6 +118,7 @@ void tabuleiro(int tam, int jogador[20][20]){
 	}
 
 }
+
 /*---------------------------------------------------------Distribuição de Armas---------------------------------------------*/
 
 void distribuicaoArmas(int tam, int jogador[20][20]){
@@ -462,12 +462,14 @@ void distribuicaoArmas(int tam, int jogador[20][20]){
 /*--------------------------------------------------------Ganhadores--------------------------------------------------------------*/
 
 void ganhador1(){
+	limparTela();
 	printf("						PARABENS! JOGADOR 1 Você acaba de DESTRUIR TODAS\n");
 	printf("								As EMBARCAÇÕES do seu Adversario!!\n");
 	sleep(5);
 }
 
 void ganhador2(){
+	limparTela();
 	printf("						PARABENS! JOGADOR 2 Você acaba de DESTRUIR TODAS\n");
 	printf("								As EMBARCAÇÕES do seu Adversario!!\n");
 	sleep(5);
@@ -481,7 +483,7 @@ int ganhar(naval *naval){
 	for(i=0; i<naval->tam; i++){
 		for(j=0; j<naval->tam; j++){
 			if(naval->jogando1[i][j] != NAOJOGADO){
-				if(naval->jogando1[i][j] == naval->jogador1[i][j]){
+				if(naval->jogando1[i][j] == naval->jogador1[i][j] && (naval->jogando1[i][j] == PORTAAVIOES || naval->jogando1[i][j] == ENCORACADO || naval->jogando1[i][j] == FRAGATA || naval->jogando1[i][j] == CORVETA || naval->jogando1[i][j] == SUBMARINO)){
 					score++;
 				}
 			}
@@ -506,7 +508,7 @@ int ganhar(naval *naval){
 	for(i=0; i<naval->tam; i++){
 		for(j=0; j<naval->tam; j++){
 			if(naval->jogando2[i][j] != NAOJOGADO){
-				if(naval->jogando2[i][j] == naval->jogador2[i][j]){
+				if(naval->jogando2[i][j] == naval->jogador2[i][j] && (naval->jogando1[i][j] == PORTAAVIOES || naval->jogando1[i][j] == ENCORACADO || naval->jogando1[i][j] == FRAGATA || naval->jogando1[i][j] == CORVETA || naval->jogando1[i][j] == SUBMARINO)){
 					score++;
 				}
 			}
