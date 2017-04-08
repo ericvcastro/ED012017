@@ -1,5 +1,8 @@
-/*	Nome: Eric do Vale de Castro	
-	Matrícula: 15/0124236
+/*	Nome: Eric do Vale de Castro		Nome: Vinicius Aguiar Monteiro
+	Matrícula: 15/0124236				Matricula: 16/0072727
+	
+
+
 	Codigo implementado:
 	 Batalha Naval*/
 
@@ -56,7 +59,7 @@ void zerandomatrizes(int tam, int jogador[20][20]){
 
 	for (i = 0; i < tam+1; ++i){
 		for (j = 0; j < tam; ++j){
-			jogador[i][j] = AGUA;
+			jogador[i][j] = AGUA; 
 		}
 	}
 }
@@ -124,7 +127,7 @@ void tabuleiro(int tam, int jogador[20][20]){
 void distribuicaoArmas(int tam, int jogador[20][20]){
 	int aleatoriolinha, aleatoriocoluna, aleatoriovizinho, contportavioes = 0, contencoracado = 0;
 	int contfragata = 0, contcorveta = 0, contsubmarino = 0;
-	srand(time(NULL));
+	srand((unsigned) time(NULL));
 
 
 
@@ -294,7 +297,7 @@ void distribuicaoArmas(int tam, int jogador[20][20]){
 	/*____________________________________________________HARD_____________________________________________________________________*/
 
 		if(tam == 20){	/*Modo Dificil*/
-			srand(time(NULL)+1);
+			srand(time(NULL));
 				
 	/*---------------------------------------------------------------------Porta-Avioes----------------------------------------------------*/
 			do{
@@ -538,11 +541,11 @@ void jogar(naval *naval){
 	zerandomatrizes(naval->tam, naval->jogador1);
 	zerandomatrizes(naval->tam, naval->jogador2);
 	distribuicaoArmas(naval->tam, naval->jogador1);
+	srand((unsigned) time(NULL));
 	distribuicaoArmas(naval->tam, naval->jogador2);
 	
 	naojogado(naval->tam, naval->jogando1);
 	naojogado(naval->tam, naval->jogando2);
-	tabuleiro(naval->tam, naval->jogador2);
 
 	while(!ganhar(naval)){
 		
@@ -554,8 +557,8 @@ void jogar(naval *naval){
 		printf("Qual Posição Coluna você deseja jogador 1: ");
 		scanf("%d", &colunajogador1);
 		naval->jogando2[linhajogador1][colunajogador1-1] = naval->jogador2[linhajogador1][colunajogador1-1];
+		limparTela();
 		tabuleiro(naval->tam, naval->jogando2);
-		tabuleiro(naval->tam, naval->jogador2);
 		sleep(3);
 /*------------------------------------------------------------------------------------------------------------------------*/
 		limparTela();
@@ -566,10 +569,8 @@ void jogar(naval *naval){
 		printf("Qual Posição Coluna você deseja jogador 2: ");
 		scanf("%d", &colunajogador2);
 		naval->jogando1[linhajogador2][colunajogador2-1] = naval->jogador1[linhajogador2][colunajogador2-1];
-		
+		limparTela();
 		tabuleiro(naval->tam, naval->jogando1);
-		tabuleiro(naval->tam, naval->jogador1);
-		
 		sleep(3);
 		
 
@@ -583,6 +584,7 @@ int main(){
 	int menu;
 	naval naval;
 	naval.tam = 10;
+	srand(time(NULL));
 	
 
 	do{
