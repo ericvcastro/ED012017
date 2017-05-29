@@ -1,6 +1,6 @@
 /*ALUNOS:						Matricula: 
 	VINICIUS AGUIAR MONTEIRO 		16/0072727
-	ERICK DE CASTRO 				15/0124236*/
+	Eric do Vale de Castro			15/0124236*/
 
 
 #include <stdio.h>
