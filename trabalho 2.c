@@ -107,7 +107,7 @@ void opcao(node *LISTA, int op)
 			break;
 		default:
 			printf("\n\n COMANDO INVALIDO !\n\n");
-			system(CLEAR);
+			system("clear");
 	}
 }
 
@@ -115,7 +115,7 @@ int vazia(node *LISTA)
 {
 	if(LISTA->prox == NULL){
         printf("\n\n AGENDA TELEFONICA VAZIA!\n\n");
-        system("pause");
+        sleep(3);
 		return 1;
     }
 	else
@@ -141,8 +141,8 @@ node *aloca()
             scanf("%[^\n]",novo->telefone);
             setbuf(stdin, NULL);
             printf("\nCADASTRO REALIZADO COM SUCESSO!\n");
-            system("pause");
-            system(CLEAR);
+            sleep(3);
+            system("clear");
             return novo;
         }
 }
@@ -156,7 +156,8 @@ void insereInicio(node *LISTA)
 	tam++;
 }
 void ordenar(node *LISTA) {
-node *aux1, *aux2;
+	
+	node *aux1, *aux2;
         char copiar[100];
         aux1 = LISTA;
         while (aux1 != NULL) {
@@ -177,16 +178,17 @@ node *aux1, *aux2;
             }
             aux1 = aux1->prox;
         }
-        getchar();
+        
 }
 void exibe(node *LISTA)
 {
-	system("cls");
-		/*ordenar(LISTA);*/
+	system("clear");
+		ordenar(LISTA);
+		
 		
 		if(vazia(LISTA)){
 			printf("Lista vazia!\n\n");
-			return ;
+			return;
 		}
 		
 		node *tmp;
@@ -194,15 +196,15 @@ void exibe(node *LISTA)
 		
 		printf("Lista de contatos: \n");
 		
-		while( tmp != NULL){
-			printf("NOME: %s\n", tmp->nome);
-			printf("EMAIL: %s\n", tmp->email);
-			printf("TELEFONE: %s\n\n", tmp->telefone);
-			tmp = tmp->prox;
-		}
+		do{
+				printf("NOME: %s\n", tmp->nome);
+				printf("EMAIL: %s\n", tmp->email);
+				printf("TELEFONE: %s\n\n", tmp->telefone);
+				tmp = tmp->prox;
+		}while(tmp != NULL);
 		
-		system("pause");
-		system("cls");
+		sleep(3);
+		system("clear");
 		printf("\n");
 }
 
@@ -219,13 +221,13 @@ void libera(node *LISTA)
             }
 	}
 printf("\n LISTA TELEFONICA ZERADA COM SUCESSO!\n");
-system("pause");
-system(CLEAR);
+sleep(3);
+system("clear");
 }
 
 void altera(node *LISTA)
 {
-system(CLEAR);
+system("clear");
 char nome[100];
 	if(vazia(LISTA)){
 		printf("Lista vazia!\n\n");
@@ -251,7 +253,7 @@ setbuf(stdin, NULL);
 }
 void procura(node *LISTA)
 {
-system("cls");
+system("clear");
 char nome[100];
 	if(vazia(LISTA)){
 		printf("Lista vazia!\n\n");
