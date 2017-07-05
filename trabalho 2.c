@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #ifdef _WIN32
 #define CLEAR "cls"
@@ -53,6 +54,7 @@ int main(void)
 	free(LISTA);
 	return 0;
 	}
+	free(LISTA);
 }
 
 void inicia(node *LISTA)
@@ -82,6 +84,7 @@ void opcao(node *LISTA, int op)
 	switch(op){
 		case 0:
 			libera(LISTA);
+			return;
 			break;
 
 		case 1:
